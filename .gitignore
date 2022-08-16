@@ -1,0 +1,4 @@
+.env
+__pycache__
+mongo_db_data
+mongo_db_dump

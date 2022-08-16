@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  mongo:
+    image: mongo:4.4.14
+    restart: always
+    command: mongod --quiet --logpath /dev/null
+    networks:
+      - bot_net
+    volumes:
+      - ./mongo_db_data:/data/db
+      - ./mongo_db_dump:/dump
+    ports:
+      - 27027:27017
+  mongo_api:
+    build:
+      context: ./mongo_api
+      dockerfile: Dockerfile
+    volumes:
+      - ./mongo_api:/app
+    env_file: ./mongo_api/.env
+    networks:
+      - bot_net
+    restart: on-failure
+    ports:
+      - 8020:50051
+    depends_on:
+      - mongo
+networks:
+  bot_net:
+    external: false
+    driver: bridge

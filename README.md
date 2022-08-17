@@ -1,7 +1,7 @@
 # My Little Project
 ## Crypto Traiding Bot
 
-Бот бля автоматической торговли разными парами на нескольких биржах одновременно
+Бот для автоматической торговли разными парами на нескольких биржах одновременно
 
 ## Stack
 
@@ -10,7 +10,7 @@
 - Bootstrap|VueJS
 
 ## Structure (to-be)
-![](https://i.imgur.com/3IM4SgC.png)
+![](https://i.imgur.com/eloNVri.png)
 
 ## TODO
 

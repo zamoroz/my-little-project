@@ -1,5 +1,5 @@
 # My Little Project
-## Crypto Traiding Bot
+## Local Crypto Trading Bot
 
 Бот для автоматической торговли разными парами на нескольких биржах одновременно
 

@@ -13,8 +13,7 @@ from mongoengine import (
 
 
 connect(
-    host=f"mongodb://{getenv('MONGO_CRM_HOST')}:{getenv('MONGO_CRM_PORT')}/rsi_trader")
-
+    host=f"mongodb://{getenv('MONGO_CRM_HOST')}:{getenv('MONGO_CRM_PORT')}/trading_bot")
 
 class Orders(EmbeddedDocument):
     symbol = StringField()

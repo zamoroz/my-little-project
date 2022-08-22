@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+//SERVICES
+service Exchanges {
+    rpc Create (ExchangeRequest) returns (CommonReply);
+    rpc Read (ReadRequest) returns (ExchangeRequest);
+    rpc Update (ExchangeRequest) returns (CommonReply);
+    rpc Delete (ReadRequest) returns (CommonReply);
+}
+
+service Orders {
+    rpc Create (ReadRequest) returns (CommonReply);
+    rpc Add (OrderRequest) returns (CommonReply);
+    rpc Read (ReadRequest) returns (OrdersReply);
+    rpc Update (OrderRequest) returns (CommonReply);
+    rpc Delete (DeleteOrder) returns (CommonReply);
+    rpc Count (ReadRequest) returns (CountReply);
+}
+
+service Symbols {
+    rpc Create (SymbolRequest) returns (CommonReply);
+    rpc Read (ReadRequest) returns (SymbolsReply);
+    rpc Update (SymbolRequest) returns (CommonReply);
+    rpc Delete (DeleteSymbol) returns (CommonReply);
+    rpc Count (ReadRequest) returns (CountReply);
+}
+
+service Wallet {
+    rpc Create (ReadRequest) returns (CommonReply);
+    rpc Read (ReadRequest) returns (WalletReply);
+    rpc Update (WalletRequest) returns (CommonReply);
+}
+
+
+//REQUESTS
+message ReadRequest {
+    string exchange = 1;
+}
+
+message ExchangeRequest {
+    string name = 1;
+    repeated string symbols = 2;
+}
+
+message OrderRequest {
+    string exchange = 1;
+    string symbol = 2;
+    string order_id = 3;
+    float price = 4;
+    float qty = 5;
+    Status status = 6;
+    Side side = 7;
+    int64 time = 8;
+}
+message DeleteOrder {
+    string exchange = 1;
+    string symbol = 2;
+    string order_id = 3;
+}
+
+message SymbolRequest {
+    string exchange = 1;
+    string symbol = 2;
+    string base_asset = 3;
+    string quote_asset = 4;
+    int32 qty_rounder = 5;
+    int32 price_rounder = 6;
+}
+message DeleteSymbol {
+    string exchange = 1;
+    string symbol = 2;
+}
+
+message WalletRequest {
+    string exchange = 1;
+    string coin = 2;
+    float amount = 3;
+}
+
+//REPLY
+message CommonReply {
+    int32 code = 1;
+    string message = 2;
+}
+
+message CountReply {
+    int32 count = 1;
+}
+
+message OrdersReply {
+    repeated OrderRequest orders = 1;
+}
+
+message SymbolsReply {
+    repeated SymbolRequest orders = 1;
+}
+
+message WalletReply {
+    repeated WalletRequest wallet = 1;
+}
+
+//Orders enums
+enum Status {
+    NEW = 0;
+    FILLED = 1;
+    CANCELED = 2;
+    REJECTED = 3;
+}
+
+enum Side {
+    SELL = 0;
+    BUY = 1;
+}

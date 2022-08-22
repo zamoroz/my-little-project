@@ -1,0 +1,3 @@
+websocket
+requests
+ssl

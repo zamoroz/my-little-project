@@ -10,11 +10,10 @@
 - Bootstrap|VueJS
 
 ## Structure (to-be)
-![](https://i.imgur.com/eloNVri.png)
+![](https://i.imgur.com/30WsJun.png)
 
 ## TODO
 
-- gRPC Servicers
 - Listeners
 - Exchanges client
 - etc

@@ -11,13 +11,13 @@ services:
       - ./mongo_db_dump:/dump
     ports:
       - 27027:27017
-  mongo_api:
+  db_api:
     build:
-      context: ./mongo_api
+      context: ./db_api
       dockerfile: Dockerfile
     volumes:
-      - ./mongo_api:/app
-    env_file: ./mongo_api/.env
+      - ./db_api:/app
+    env_file: ./db_api/.env
     networks:
       - bot_net
     restart: on-failure
@@ -25,6 +25,14 @@ services:
       - 8020:50051
     depends_on:
       - mongo
+  rabbitmq:
+    image: rabbitmq:latest
+    volumes:
+      - ./rabbit_data:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+    networks:
+      - bot_net
 networks:
   bot_net:
     external: false
